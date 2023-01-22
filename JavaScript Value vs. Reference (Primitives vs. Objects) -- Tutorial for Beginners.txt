@@ -1,0 +1,1000 @@
+﻿0:00
+If you're a javascript developer chances are
+0:02
+you didn't learn about the value vs reference
+0:05
+you may not even know what I'm talking about when I say that
+0:08
+it's one of those things that rarely gets the attention it deserves but it's a
+0:12
+fundamental feature of javascript
+0:14
+and the source of a ton
+0:16
+Of bugs
+0:17
+for all of us
+0:18
+and if you knew how it works you could save yourself a ton of time
+0:22
+and pain.
+0:23
+So what is this all about when we say copy by value versus copied by reference why
+0:27
+should you care and how does this affect you as a javascript developers weather in
+0:32
+your day to day job
+0:33
+or an interview process by the end of this video you will master
+0:36
+this fundamental concept.
+0:38
+Welcome back everybody this is the last episode
+0:41
+episode ten of this ten part series I'm calling
+0:45
+Ten things javascript developers should know
+0:47
+but probably don't
+0:49
+episode final episode ten
+0:51
+value vs reference plus a big announcement at the end of the video as to what we're
+0:56
+going to do after the series and spoiler alert
+1:00
+It involves you.
+1:02
+There are changes come into color code and I can't wait to share them with you
+1:05
+with that
+1:06
+Episode ten
+1:16
+In episode one and two of this series we talked a lot about inheritance
+1:22
+and how in javascript
+1:23
+ Prototypes are the way we create inheritance hierarchies.
+1:27
+I also showed you that everything eventually is
+1:30
+an instance of the object type.
+1:32
+The truth is
+1:34
+however
+1:34
+that there are two types of values not just objects
+1:38
+primitives and objects but wait real quick what are values again
+1:43
+in a variable declaration like this
+1:46
+you have the variable on the left side and
+1:48
+you have the value on the right side so if you take all kinds of values in javascript
+1:54
+you have two kinds you have primitives these
+1:57
+Which are Number, Boolean, String, Null and Undefined
+2:01
+and you have
+2:02
+objects these once
+2:04
+Object, Array, Function, Date, Regex
+2:07
+ and couple other ones, but why do we care that they're are different well
+2:11
+we care because they act differently in important ways most importantly
+2:15
+in the way they're stored okay so what does
+2:17
+that mean let's start with a simple example
+2:20
+To The Browser.
+2:22
+Alright let's start with the simple one
+2:24
+const a equals one
+2:26
+Const b also equal
+2:29
+actually lets do two
+2:30
+A triple equals b
+2:33
+False of course
+2:34
+makes sense
+2:36
+Let's do another one where a and b are
+2:38
+the same
+2:40
+a triple equals b
+2:42
+True
+2:43
+simple stuff
+2:44
+Not a big deal
+2:46
+Now what if I do a equals an array
+2:50
+That
+2:51
+Houses one and same thing would be
+2:54
+a triple equals b
+2:57
+false
+2:59
+Now it is the easiest thing in the world to look at this code
+3:03
+ and say wow javascript sucks
+3:06
+That is a lazy way of looking at it
+3:09
+Don't become one of those people
+3:10
+this is a cop out answer
+3:12
+don't cop out.
+3:13
+Instead we can try and understand what is going on here I Grant you
+3:17
+That
+3:18
+There are parts of javascript that were
+3:20
+decided on
+3:21
+and implemented decades ago and they are truly weird and and don't make much sense
+3:26
+this isn't one of those scenarios
+3:28
+so to explain this
+3:30
+one thing you'll notice is that
+3:33
+one of these is a primitive so
+3:35
+this one is a primitive where the the two are equal
+3:39
+and this one they're not primitive that are objects which are...
+3:42
+i mean arrays which are a type of object
+3:45
+So
+3:46
+it doesn't matter that there is a primitive
+3:48
+inside it what matters is that it's an array.
+3:51
+So let's try
+3:52
+one more thing another primitive value let's say String so
+3:56
+const myName equals SINAAA
+4:02
+Okay
+4:03
+So
+4:04
+Before we go any further
+4:06
+we need to understand what this one line
+4:08
+does and I promise you
+4:11
+Most of you watching don't fully understand this one simple line of javascript
+4:16
+and
+4:17
+Some of you most definitely don't
+4:19
+know the difference between this line and this line
+4:21
+myCar equals an object
+4:25
+Those are two
+4:26
+kind of similar looking
+4:27
+Statements but they're are very very different
+4:30
+and I'm going to dissect them, I'm going to need my trusty animation too
+4:33
+i don't think I can code
+4:34
+ So I'm going to get out of this bubble
+4:36
+Whoops
+4:37
+I'm going to use my trusty animation board.
+4:40
+When you assign a value to variable like this
+4:43
+Javascript does one of two things depending on the value that's on the right side
+4:49
+This being the value
+4:51
+If it's a primitive say a string javascript takes the actual
+4:56
+value of the string
+4:57
+and points the variable to that it doesn't create a new string
+5:02
+and that is key here on the other hand if it's not a primitive let's say it's an
+5:06
+object javascript actually creates the object from scratch and points the variable
+5:12
+to the location not the object itself but the location of the object in your
+5:17
+computer's memory aka
+5:19
+The address aka it's reference
+5:22
+oh but wait a minute that's not what happens with strings
+5:25
+ If you don't create
+5:26
+a string then where does this come from
+5:29
+Well good question Craig
+5:30
+you can think of
+5:31
+primitives as
+5:33
+Values that already exist in memory it's a totally different way of thinking about it
+5:37
+and I know it's it's a little
+5:39
+it's a little more complicated than that because obviously javascript
+5:41
+can't have of all the possible numbers and strings in the world
+5:45
+in its memory but for the purpose of the value assignment primitives or what they are
+5:50
+the value itself it's that simple what you see is what you get.
+5:54
+Let's go back to the browser real quick
+5:57
+I'm going to try one more thing const a equals one
+6:00
+Okay and const b equals one same exact thing
+6:03
+a and b literally have the same
+6:06
+value of one
+6:08
+They don't have a copy of one that's the important part here whereas if I have
+6:14
+while I can create objects now if I have to to empty objects
+6:18
+a and b have totally different values even though they look alike
+6:22
+one is always one
+6:23
+but an empty object isn't necessarily the same thing as another empty object
+6:28
+They're like twins identical but separate people
+6:32
+Now back to the original example
+6:35
+Right when we do the triple equals
+6:37
+one is always one
+6:38
+javascript looks at that and says
+6:41
+True they are the same thing
+6:42
+whereas if I use
+6:43
+a non primitive so let's say I use
+6:47
+An array that was the example we had before
+6:51
+a triple equals b is going to be false
+6:53
+so now hopefully you know what is going on here
+6:55
+An array with the number one inside of it is not the same thing
+7:00
+as another array with a number one in it
+7:02
+think about maybe
+7:04
+The first array is my favorite
+7:06
+Single digit number
+7:08
+And maybe the second one is the number of
+7:11
+times I have fallen down the stairs this week
+7:13
+also one
+7:14
+so they're representing two very different facts
+7:17
+Whereas one again is always one
+7:20
+or let's use an object this time
+7:21
+const
+7:22
+Umm..
+7:24
+a equals
+7:26
+skills
+7:27
+Or skill.
+7:28
+Let's say we're representing two different people skill cooking
+7:33
+That's person a
+7:35
+Person b
+7:36
+might also
+7:37
+Have a skill of cooking so maybe a is representing someone like Gordon Ramsey who does
+7:42
+cooks food
+7:43
+And
+7:44
+Be person b's representing someone like Walter white who also cooks
+7:49
+but...
+7:50
+he's a different person and it's a different kind
+7:52
+of cook
+7:53
+Right
+7:53
+so
+7:54
+again the objects look
+7:56
+identical
+7:57
+but there are representing very different kind of cooking and very different people
+8:01
+although similar in some ways too
+8:04
+So if I can compare them javascript goes no no no these are two different people
+8:09
+and that's where we get with objects
+8:11
+So to recap primitives are are assigned by
+8:14
+value
+8:15
+and those are Numbers, Strings, Booleans, Null and Undefined.
+8:19
+Objects on the other hand get assigned by reference and those are
+8:23
+Objects, Arrays, Functions, Dates and Regex
+8:27
+So now what, what do I do with this information right
+8:29
+I'm going to show you some real world examples where this actually matters
+8:33
+so first one is comparison where we looked at it
+8:36
+but a lot of times we need to check
+8:38
+the values against each other a very common thing to do in
+8:42
+any programming language and pretty much any
+8:45
+Application so your app is a alarm clock
+8:48
+app and you want to check the time and see as soon as it hits seven A.M you want
+8:53
+to sound the alarm
+8:54
+it's very simple concept right
+8:56
+Seven is just a number you might have something like this
+8:59
+actually in javascript we check the current
+9:01
+Time of day
+9:03
+and as long as it matches seven
+9:06
+You can do a triple equals and and that's it, you're done this is basically all you
+9:10
+have to do when you compare those two numbers vs say this is something I had to
+9:14
+go through recently
+9:15
+so you have a profile page
+9:17
+and you want to enable and disable
+9:20
+The save button based on whether or not the user has updated the profile right so we
+9:24
+wanted to be disabled at first
+9:26
+but as soon as the user changes anything on their profile
+9:30
+You want to enable the button and then allow them to
+9:32
+to click on it
+9:33
+If you simply compare the original object if you compare that object with the object
+9:39
+that the form is giving you
+9:41
+they will always be different because even though they might look alike to you.
+9:45
+They are different objects in memory so
+9:48
+A comparison will always
+9:50
+well return false which means there are always going to be different objects
+9:54
+so you're enable or your save button is always going to be enable
+9:57
+another scenario that I can think of is when you pass a variable
+10:02
+to a function and you want that function to perform an operation on on that parameter
+10:08
+Actually I'm going to show you this
+10:10
+in the browser
+10:11
+Say I have a function that says function
+10:15
+Increment
+10:18
+Age
+10:18
+Right and I pass in it
+10:20
+An age to it
+10:22
+And I want the function to take the age
+10:24
+Equals age plus one
+10:26
+Right so an increment my age
+10:28
+If I simply say const
+10:31
+my age equals
+10:34
+Ten
+10:35
+Ten years old
+10:36
+And I'm going to call the function increment age and passing my age
+10:40
+What do we think is going to happen while we think
+10:43
+That it took the
+10:45
+Guess
+10:45
+just
+10:46
+So
+10:47
+This my age we are passing it into this function and we think that age is going to be
+10:51
+age plus one
+10:52
+So I think my age should now be eleven
+10:56
+But if I look at my age
+10:59
+It's still ten
+11:00
+Now why is that while the value of the age variable
+11:03
+is a number so it's a primitive
+11:06
+Now so when you pass it to a function you're actually passing the value of ten
+11:11
+Not the variable itself not the age itself
+11:13
+So
+11:14
+It gets copied by value not reference
+11:17
+Whereas if I have a function
+11:21
+That
+11:22
+takes instead of increment
+11:25
+Increment age same thing
+11:27
+but it actually takes an object so let's say we're passing the entire user
+11:31
+and the user object has a
+11:33
+Age
+11:34
+Property on it
+11:35
+user.age plus one I know I can do a shorthand but
+11:39
+We're simplifying
+11:40
+If I now have const me equals this object that has
+11:44
+age in it
+11:46
+Ten
+11:47
+Twelve ten
+11:49
+And let's say I do increment
+11:52
+Increment age
+11:55
+And I pass in
+11:57
+Not user
+11:58
+me
+11:59
+Right
+12:00
+What do we think is going to happen well i'm passing this
+12:03
+Object type not a primitive, a non primitive we're passing it to this object
+12:07
+Is going to get passed in as reference so the actual me object itself is going to go
+12:12
+in here
+12:13
+and the age of
+12:15
+that object which is the me object is going to be
+12:18
+manipulated so let's see.
+12:20
+How that works
+12:21
+me
+12:22
+Now age is eleven
+12:23
+right
+12:24
+so
+12:25
+again that's because
+12:26
+object are passed as reference so when I call increment
+12:30
+age and passing by object
+12:32
+actually passing the reference itself
+12:34
+which by the way may or may not be what you want
+12:36
+this is a really is important thing
+12:38
+and as a side note this might
+12:40
+seem like a good idea now because we're like
+12:42
+oh well we're manipulating the right object
+12:44
+in functional programming we call this as side effects right
+12:47
+this is most of you probably know this but
+12:50
+That means the function effects variables that are outside its own context meaning
+12:54
+this me object which does not belong
+12:57
+In the scope of this function
+12:59
+It gets affected by the by the function which is a big no-no in functional
+13:03
+programming with the concept of pure functions is that they don't change variable
+13:06
+it's outside
+13:07
+the scope of themselves they create a new variable
+13:09
+and return that new variable back to you
+13:13
+But that's a lesson
+13:14
+for another day
+13:15
+Water break
+13:18
+Lark.
+13:21
+So as you can see
+13:22
+There are real world consequences to understanding value vs reference
+13:27
+right and that could be the cause of a lot of your bugs
+13:30
+When you understand how values are set
+13:33
+and
+13:34
+passed around
+13:35
+You can catch those bugs a lot faster and avoid making mistakes again
+13:39
+So that was comparison
+13:41
+I also want to cover copying
+13:44
+so let's go back to the browser for one last time
+13:47
+To The Browser
+13:48
+So whenever when you
+13:50
+you assign a value
+13:51
+ const a equals
+13:53
+One
+13:54
+right some I'm going to do this and then instead of
+13:59
+assigning a number to b I'm going to assign b to a
+14:03
+Okay so now we're talking about
+14:05
+How the values get copied
+14:07
+So if I'm referencing a
+14:11
+And pointing b to a
+14:13
+Right
+14:13
+what is a
+14:14
+a is one and be is one
+14:16
+right
+14:17
+if I change a
+14:18
+it eight
+14:20
+Whoops
+14:20
+const a they don't
+14:22
+They can't change
+14:24
+let a
+14:27
+Browser
+14:30
+let a
+14:31
+and let b right a is one
+14:33
+be is one so if I
+14:36
+Set a to
+14:37
+The number seven
+14:39
+What do you think it's going to happen to b
+14:41
+Let's take a look
+14:42
+Be say there's one
+14:44
+right
+14:44
+but
+14:45
+because again we copied the value we didn't
+14:47
+b was not pointing to a b was pointing to one
+14:51
+So if I change a
+14:52
+b is not affected whereas if I
+14:55
+use an object
+14:57
+Instead and say a's name is
+15:01
+Sina
+15:02
+And now I'm going to
+15:04
+Point b to a right
+15:06
+What is a
+15:08
+a is Sina
+15:09
+b is Sina
+15:10
+now what if I change the name of a
+15:13
+To Qoli
+15:15
+Right
+15:16
+a is Qoli
+15:17
+what is b
+15:20
+b is also Qoli
+15:21
+Right so why is that again because it
+15:24
+it copies be is pointing to the reference of the object because it's not a primitive
+15:30
+So uh and even more interesting than that is when I assign
+15:35
+a to something totally different
+15:40
+name equals CRAIG
+15:44
+Right so what is a
+15:45
+ a is CRAIG
+15:47
+So would you say be is also Craig
+15:50
+No b stayed the same because
+15:52
+b was not pointing to a b was pointing to were
+15:56
+This
+15:58
+Qoli
+15:58
+Object was in memory
+16:00
+it has nothing to do with a, the fact that
+16:02
+a changed and that affected b was
+16:05
+indirectly it was affecting each other
+16:07
+they were affecting each other
+16:08
+and that means that
+16:09
+if either of them not just a
+16:11
+Would be updated the other one would also see the the change but this is an entirely
+16:16
+different assignment
+16:17
+so just
+16:18
+to takes a out of the game and a is not pointing to that original object
+16:22
+Anymore
+16:22
+Okay so hopefully that was clear
+16:25
+You have to go play with this stuff and and make sure you understand it for yourself
+16:29
+you can come back and watch this again
+16:31
+A second time it will make a lot more sense hopefully
+16:34
+I'll promise you you'll get it
+16:35
+things
+16:36
+like this come up a lot
+16:37
+in javascript interviews
+16:39
+so this is definitely a good one to know and with that my friends we have reached the
+16:44
+end of
+16:44
+the series but wait a minute what's next
+16:47
+is this all well i'm glad you asked
+16:49
+Qoli.
+16:49
+If you followed the series first of all i wanna say thank you
+16:52
+I hope you found it useful
+16:54
+but this is not where this javascript journey ends
+16:58
+Obviously there's a lot more to learn
+17:00
+in javascript than the ten things I taught you
+17:03
+and if you follow the the whole playlist
+17:06
+Awesome
+17:07
+So here's what I'm going to do next
+17:08
+I'm going to continue with ten more concepts
+17:12
+But I want them to come from you
+17:13
+I'm going to look for comments on any of the videos in the series the ten videos
+17:18
+leave a comment and tell me what specifically
+17:21
+about javascript
+17:22
+a Javascript concept
+17:24
+You want to learn that you've had a hard time understanding
+17:27
+It has to be a fundamental
+17:29
+can't be some framework or or something super niche that's
+17:33
+all I'm asking for
+17:34
+Right you can ask anything else as long as it's a fundamental
+17:37
+I will even mention you by name
+17:40
+and send you a beautiful color code sticker like this no matter where you live in the
+17:43
+world for free as long as I can
+17:46
+Ship to your country
+17:47
+All you gotta do is suggest what you want to see for episode eleven
+17:52
+And now for the big announcement
+17:55
+I have decided to create a full
+17:57
+javascript course
+17:59
+For anyone
+18:00
+who is looking to get their first
+18:02
+or next
+18:04
+javascript
+18:05
+programming job
+18:06
+I've spent years putting this thing together
+18:08
+and finally with the help of my team
+18:11
+is coming to life
+18:12
+It will include
+18:14
+JavaScript Fundamentals
+18:16
+Using the why method
+18:17
+something I call the why method i've used this a lot in this series
+18:21
+so if you like the way I'm teaching
+18:23
+These ten videos
+18:24
+that's the way it's going to be for the full course
+18:27
+Interview preparation I get this asked a lot
+18:29
+common mistakes that people make during interviews
+18:33
+and you can easily avoid them so there's going to be an Interview Prep section
+18:37
+In the course
+18:38
+Mastery mindset this is something that very few people talk about something that you
+18:42
+can learn
+18:43
+and use it
+18:44
+to go and learn
+18:45
+any other language
+18:46
+doesn't have to stop with javascript
+18:49
+again using the why the method
+18:50
+and one of my favorite parts of this is what I call expert conversations where I
+18:56
+have picked
+18:56
+Some of my friends are some of the more
+18:58
+I guess famous youtubers and teachers from from Twitter YouTube or
+19:03
+Frontend masters and
+19:05
+And Udemy and few other places i've decided to talk to them
+19:09
+and record those conversations
+19:10
+Hours of expert advice on
+19:13
+how to nail the language of javascript specifically
+19:17
+No matter what your goal is whether you want to get
+19:20
+a job or you want to get a
+19:21
+better job you want to make more money
+19:23
+You want to
+19:24
+Just simply become the expert in javascript
+19:27
+still the world's most
+19:29
+Popular programming language not a bad thing to nail right
+19:33
+So if you want to know when the course is released I will be announcing it on this
+19:36
+channel so make sure you
+19:38
+Subscribe or go to colorcode.io
+19:41
+and sign up for early access there's a form there
+19:44
+I do not
+19:45
+send you marketing
+19:46
+emails or any bullsh*t like that
+19:48
+It's simply
+19:49
+a way for me to let you know when the course is available
+19:54
+JavaScrip Mastery and with that again I want to say thank you for watching the
+19:57
+series it's been a lot of fun for me to seeing
+19:59
+your reactions and it's just been such a positive
+20:02
+Experience on YouTube
+20:04
+YouTube is notorious for having
+20:06
+Really nasty comments and people fighting I haven't seen any of that
+20:10
+in the series so that's been truly amazing
+20:13
+to see
+20:14
+and this is been ten things javascript developers should know
+20:17
+but probably don't
+20:19
+I'm looking forward to hearing what you want to see for episode eleven
+20:23
+Now go write some code and I'm looking forward to sharing my full course with you
+20:27
+very soon
+20:28
+Salute.
