@@ -1,0 +1,2206 @@
+﻿1
+00:00:00,120 --> 00:00:02,628
+If you're a javascript
+developer chances are
+
+2
+00:00:02,652 --> 00:00:05,160
+you didn't learn about
+the value vs reference
+
+3
+00:00:05,160 --> 00:00:07,830
+you may not even know what
+I'm talking about when I say that
+
+4
+00:00:08,040 --> 00:00:12,030
+it's one of those things that rarely
+gets the attention it deserves but it's a
+
+5
+00:00:12,030 --> 00:00:14,010
+fundamental feature of javascript
+
+6
+00:00:14,400 --> 00:00:16,350
+and the source of a ton
+
+7
+00:00:16,710 --> 00:00:17,430
+Of bugs
+
+8
+00:00:17,580 --> 00:00:18,450
+for all of us
+
+9
+00:00:18,570 --> 00:00:21,690
+and if you knew how it works you
+could save yourself a ton of time
+
+10
+00:00:22,080 --> 00:00:22,680
+and pain.
+
+11
+00:00:23,100 --> 00:00:27,780
+So what is this all about when we say
+copy by value versus copied by reference why
+
+12
+00:00:27,780 --> 00:00:32,039
+should you care and how does this affect
+you as a javascript developers weather in
+
+13
+00:00:32,039 --> 00:00:33,090
+your day to day job
+
+14
+00:00:33,240 --> 00:00:36,750
+or an interview process by the
+end of this video you will master
+
+15
+00:00:36,960 --> 00:00:38,580
+this fundamental concept.
+
+16
+00:00:38,970 --> 00:00:41,490
+Welcome back
+everybody this is the last episode
+
+17
+00:00:41,610 --> 00:00:44,670
+episode ten of this
+ten part series I'm calling
+
+18
+00:00:45,030 --> 00:00:47,220
+Ten things javascript
+developers should know
+
+19
+00:00:47,640 --> 00:00:48,960
+but probably don't
+
+20
+00:00:49,230 --> 00:00:51,270
+episode final episode ten
+
+21
+00:00:51,450 --> 00:00:56,910
+value vs reference plus a big announcement
+at the end of the video as to what we're
+
+22
+00:00:56,910 --> 00:00:59,610
+going to do after the
+series and spoiler alert
+
+23
+00:01:00,180 --> 00:01:01,180
+It involves you.
+
+24
+00:01:02,250 --> 00:01:05,550
+There are changes come into color code
+and I can't wait to share them with you
+
+25
+00:01:05,676 --> 00:01:06,413
+with that
+
+26
+00:01:06,630 --> 00:01:07,438
+Episode ten
+
+27
+00:01:16,782 --> 00:01:21,972
+In episode one and two of this series we
+talked a lot about inheritance
+
+28
+00:01:22,012 --> 00:01:22,800
+and how in javascript
+
+29
+00:01:23,195 --> 00:01:27,005
+ Prototypes are the way we create
+inheritance hierarchies.
+
+30
+00:01:27,033 --> 00:01:30,410
+I also showed you that everything eventually is
+
+31
+00:01:30,630 --> 00:01:32,399
+an instance of the object type.
+
+32
+00:01:32,750 --> 00:01:33,750
+The truth is
+
+33
+00:01:34,290 --> 00:01:34,890
+however
+
+34
+00:01:34,890 --> 00:01:38,320
+that there are two types of
+values not just objects
+
+35
+00:01:38,450 --> 00:01:43,460
+primitives and objects but wait real
+quick what are values again
+
+36
+00:01:43,560 --> 00:01:45,990
+in a variable
+declaration like this
+
+37
+00:01:46,290 --> 00:01:48,630
+you have the
+variable on the left side and
+
+38
+00:01:48,900 --> 00:01:54,114
+you have the value on the right side
+so if you take all kinds of values in javascript
+
+39
+00:01:54,233 --> 00:01:57,480
+you have two kinds
+you have primitives these
+
+40
+00:01:57,810 --> 00:02:01,260
+Which are Number, Boolean,
+String, Null and Undefined
+
+41
+00:02:01,620 --> 00:02:02,620
+and you have
+
+42
+00:02:02,700 --> 00:02:04,284
+objects these once
+
+43
+00:02:04,347 --> 00:02:07,410
+Object, Array, Function, Date, Regex
+
+44
+00:02:07,490 --> 00:02:10,934
+ and couple other ones, but why
+do we care that they're are different well
+
+45
+00:02:11,045 --> 00:02:15,600
+we care because they act differently
+in important ways most importantly
+
+46
+00:02:15,840 --> 00:02:17,838
+in the way they're stored okay so what does
+
+47
+00:02:17,862 --> 00:02:20,148
+that mean let's start
+with a simple example
+
+48
+00:02:20,550 --> 00:02:21,550
+To The Browser.
+
+49
+00:02:22,170 --> 00:02:23,910
+Alright let's start
+with the simple one
+
+50
+00:02:24,120 --> 00:02:25,892
+const a equals one
+
+51
+00:02:26,370 --> 00:02:29,027
+Const b also equal
+
+52
+00:02:29,052 --> 00:02:30,195
+actually lets do two
+
+53
+00:02:30,690 --> 00:02:32,640
+A triple equals b
+
+54
+00:02:33,330 --> 00:02:34,650
+False of course
+
+55
+00:02:34,770 --> 00:02:35,770
+makes sense
+
+56
+00:02:36,241 --> 00:02:38,550
+Let's do another one
+where a and b are
+
+57
+00:02:38,760 --> 00:02:39,760
+the same
+
+58
+00:02:40,458 --> 00:02:42,240
+a triple equals b
+
+59
+00:02:42,720 --> 00:02:43,170
+True
+
+60
+00:02:43,380 --> 00:02:44,380
+simple stuff
+
+61
+00:02:44,520 --> 00:02:45,520
+Not a big deal
+
+62
+00:02:46,290 --> 00:02:49,800
+Now what if I do
+a equals an array
+
+63
+00:02:50,640 --> 00:02:51,640
+That
+
+64
+00:02:51,750 --> 00:02:53,760
+Houses one and
+same thing would be
+
+65
+00:02:54,583 --> 00:02:56,263
+a triple equals b
+
+66
+00:02:57,583 --> 00:02:58,287
+false
+
+67
+00:02:59,940 --> 00:03:03,479
+Now it is the easiest thing in the world to
+look at this code
+
+68
+00:03:03,504 --> 00:03:06,157
+ and say wow javascript sucks
+
+69
+00:03:06,182 --> 00:03:09,276
+That is a lazy
+way of looking at it
+
+70
+00:03:09,300 --> 00:03:10,580
+Don't become one of those people
+
+71
+00:03:10,616 --> 00:03:12,420
+this is a cop out answer
+
+72
+00:03:12,570 --> 00:03:13,140
+don't cop out.
+
+73
+00:03:13,320 --> 00:03:17,130
+Instead we can try and understand
+what is going on here I Grant you
+
+74
+00:03:17,550 --> 00:03:18,060
+That
+
+75
+00:03:18,420 --> 00:03:20,280
+There are parts of
+javascript that were
+
+76
+00:03:20,400 --> 00:03:21,400
+decided on
+
+77
+00:03:21,600 --> 00:03:26,430
+and implemented decades ago and they are
+truly weird and and don't make much sense
+
+78
+00:03:26,700 --> 00:03:28,470
+this isn't one of
+those scenarios
+
+79
+00:03:28,770 --> 00:03:30,180
+so to explain this
+
+80
+00:03:30,330 --> 00:03:32,880
+one thing you'll notice is that
+
+81
+00:03:33,060 --> 00:03:35,040
+one of these is a primitive so
+
+82
+00:03:35,205 --> 00:03:38,982
+this one is a
+primitive where the the two are equal
+
+83
+00:03:39,007 --> 00:03:42,911
+and this one they're not primitive
+that are objects which are...
+
+84
+00:03:42,936 --> 00:03:45,210
+i mean arrays which are a type of object
+
+85
+00:03:45,660 --> 00:03:46,110
+So
+
+86
+00:03:46,290 --> 00:03:48,468
+it doesn't matter that there is a primitive
+
+87
+00:03:48,492 --> 00:03:50,670
+inside it what matters
+is that it's an array.
+
+88
+00:03:51,150 --> 00:03:52,150
+So let's try
+
+89
+00:03:52,260 --> 00:03:56,010
+one more thing another primitive
+value let's say String so
+
+90
+00:03:56,593 --> 00:04:00,768
+const myName equals SINAAA
+
+91
+00:04:02,910 --> 00:04:03,390
+Okay
+
+92
+00:04:03,510 --> 00:04:03,960
+So
+
+93
+00:04:04,500 --> 00:04:05,850
+Before we go any further
+
+94
+00:04:06,090 --> 00:04:08,190
+we need to understand
+what this one line
+
+95
+00:04:08,430 --> 00:04:11,100
+does and I promise you
+
+96
+00:04:11,430 --> 00:04:16,350
+Most of you watching don't fully understand
+this one simple line of javascript
+
+97
+00:04:16,470 --> 00:04:16,860
+and
+
+98
+00:04:17,190 --> 00:04:18,900
+Some of you
+most definitely don't
+
+99
+00:04:19,080 --> 00:04:21,330
+know the difference
+between this line and this line
+
+100
+00:04:21,887 --> 00:04:24,610
+myCar equals an object
+
+101
+00:04:25,230 --> 00:04:26,130
+Those are two
+
+102
+00:04:26,250 --> 00:04:27,390
+kind of similar looking
+
+103
+00:04:27,840 --> 00:04:29,970
+Statements but they're
+are very very different
+
+104
+00:04:30,090 --> 00:04:33,354
+and I'm going to dissect them, I'm going
+to need my trusty animation too
+
+105
+00:04:33,378 --> 00:04:34,477
+i don't think I can code
+
+106
+00:04:34,503 --> 00:04:36,295
+ So I'm going to get out
+of this bubble
+
+107
+00:04:36,368 --> 00:04:37,058
+Whoops
+
+108
+00:04:37,083 --> 00:04:39,840
+I'm going to use my trusty animation board.
+
+109
+00:04:40,500 --> 00:04:43,470
+When you assign a
+value to variable like this
+
+110
+00:04:43,920 --> 00:04:49,140
+Javascript does one of two things depending
+on the value that's on the right side
+
+111
+00:04:49,860 --> 00:04:50,910
+This being the value
+
+112
+00:04:51,480 --> 00:04:55,830
+If it's a primitive say a string
+javascript takes the actual
+
+113
+00:04:56,010 --> 00:04:57,390
+value of the string
+
+114
+00:04:57,690 --> 00:05:02,010
+and points the variable to that
+it doesn't create a new string
+
+115
+00:05:02,250 --> 00:05:06,690
+and that is key here on the other hand
+if it's not a primitive let's say it's an
+
+116
+00:05:06,720 --> 00:05:12,150
+object javascript actually creates the
+object from scratch and points the variable
+
+117
+00:05:12,420 --> 00:05:17,730
+to the location not the object itself
+but the location of the object in your
+
+118
+00:05:17,730 --> 00:05:19,367
+computer's memory aka
+
+119
+00:05:19,713 --> 00:05:22,442
+The address aka it's reference
+
+120
+00:05:22,467 --> 00:05:24,750
+oh but wait a minute
+that's not what happens with strings
+
+121
+00:05:25,110 --> 00:05:26,130
+ If you don't create
+
+122
+00:05:26,280 --> 00:05:28,799
+a string then where
+does this come from
+
+123
+00:05:29,160 --> 00:05:30,660
+Well good question Craig
+
+124
+00:05:30,840 --> 00:05:31,560
+you can think of
+
+125
+00:05:31,740 --> 00:05:33,240
+primitives as
+
+126
+00:05:33,660 --> 00:05:37,650
+Values that already exist in memory it's a
+totally different way of thinking about it
+
+127
+00:05:37,830 --> 00:05:39,180
+and I know it's it's a little
+
+128
+00:05:39,300 --> 00:05:41,946
+it's a little more complicated than
+that because obviously javascript
+
+129
+00:05:41,970 --> 00:05:45,540
+can't have of all the possible
+numbers and strings in the world
+
+130
+00:05:45,960 --> 00:05:50,880
+in its memory but for the purpose of the
+value assignment primitives or what they are
+
+131
+00:05:50,970 --> 00:05:54,450
+the value itself it's that simple
+what you see is what you get.
+
+132
+00:05:54,750 --> 00:05:56,310
+Let's go back to the
+browser real quick
+
+133
+00:05:57,210 --> 00:05:59,610
+I'm going to try one more
+thing const a equals one
+
+134
+00:06:00,030 --> 00:06:03,600
+Okay and const b equals
+one same exact thing
+
+135
+00:06:03,960 --> 00:06:06,630
+a and b literally have the same
+
+136
+00:06:06,840 --> 00:06:08,040
+value of one
+
+137
+00:06:08,460 --> 00:06:13,020
+They don't have a copy of one that's
+the important part here whereas if I have
+
+138
+00:06:14,970 --> 00:06:18,150
+while I can create objects
+now if I have to to empty objects
+
+139
+00:06:18,907 --> 00:06:22,303
+a and b have totally different values even
+though they look alike
+
+140
+00:06:22,328 --> 00:06:23,736
+one is always one
+
+141
+00:06:23,760 --> 00:06:28,579
+but an empty object isn't necessarily the
+same thing as another empty object
+
+142
+00:06:28,604 --> 00:06:31,560
+They're like twins identical
+but separate people
+
+143
+00:06:32,070 --> 00:06:34,651
+Now back to the original example
+
+144
+00:06:35,280 --> 00:06:37,050
+Right when we do the triple equals
+
+145
+00:06:37,476 --> 00:06:38,640
+one is always one
+
+146
+00:06:38,820 --> 00:06:40,620
+javascript looks at that and says
+
+147
+00:06:41,130 --> 00:06:42,360
+True they are the same thing
+
+148
+00:06:42,540 --> 00:06:43,680
+whereas if I use
+
+149
+00:06:43,980 --> 00:06:46,560
+a non primitive so let's say I use
+
+150
+00:06:47,520 --> 00:06:49,800
+An array that was the
+example we had before
+
+151
+00:06:51,180 --> 00:06:53,443
+a triple equals b is going to be false
+
+152
+00:06:53,468 --> 00:06:55,869
+so now hopefully you know
+what is going on here
+
+153
+00:06:55,894 --> 00:06:59,850
+An array with the number one inside
+of it is not the same thing
+
+154
+00:07:00,150 --> 00:07:02,610
+as another array
+with a number one in it
+
+155
+00:07:02,850 --> 00:07:03,870
+think about maybe
+
+156
+00:07:04,190 --> 00:07:06,388
+The first array is my favorite
+
+157
+00:07:06,690 --> 00:07:08,010
+Single digit number
+
+158
+00:07:08,558 --> 00:07:11,235
+And maybe the second
+one is the number of
+
+159
+00:07:11,260 --> 00:07:13,500
+times I have fallen
+down the stairs this week
+
+160
+00:07:13,770 --> 00:07:14,370
+also one
+
+161
+00:07:14,580 --> 00:07:17,070
+so they're representing
+two very different facts
+
+162
+00:07:17,520 --> 00:07:19,890
+Whereas one again is always one
+
+163
+00:07:20,018 --> 00:07:21,700
+or let's use an object
+this time
+
+164
+00:07:21,725 --> 00:07:22,321
+const
+
+165
+00:07:22,903 --> 00:07:24,110
+Umm..
+
+166
+00:07:24,135 --> 00:07:25,627
+a equals
+
+167
+00:07:26,238 --> 00:07:26,920
+skills
+
+168
+00:07:27,660 --> 00:07:28,660
+Or skill.
+
+169
+00:07:28,868 --> 00:07:32,010
+Let's say we're representing two
+different people skill cooking
+
+170
+00:07:33,390 --> 00:07:34,500
+That's person a
+
+171
+00:07:35,010 --> 00:07:35,910
+Person b
+
+172
+00:07:36,046 --> 00:07:37,046
+might also
+
+173
+00:07:37,290 --> 00:07:42,000
+Have a skill of cooking so maybe a is
+representing someone like Gordon Ramsey who does
+
+174
+00:07:42,090 --> 00:07:43,090
+cooks food
+
+175
+00:07:43,859 --> 00:07:44,490
+And
+
+176
+00:07:44,850 --> 00:07:48,720
+Be person b's representing someone
+like Walter white who also cooks
+
+177
+00:07:49,080 --> 00:07:50,080
+but...
+
+178
+00:07:50,280 --> 00:07:52,230
+he's a different person
+and it's a different kind
+
+179
+00:07:52,350 --> 00:07:52,740
+of cook
+
+180
+00:07:53,280 --> 00:07:53,580
+Right
+
+181
+00:07:53,730 --> 00:07:54,510
+so
+
+182
+00:07:54,660 --> 00:07:56,220
+again the objects look
+
+183
+00:07:56,340 --> 00:07:57,340
+identical
+
+184
+00:07:57,450 --> 00:08:01,860
+but there are representing very different
+kind of cooking and very different people
+
+185
+00:08:01,860 --> 00:08:04,079
+although similar in some ways too
+
+186
+00:08:04,920 --> 00:08:09,030
+So if I can compare them javascript goes
+no no no these are two different people
+
+187
+00:08:09,526 --> 00:08:11,422
+and that's where we get with objects
+
+188
+00:08:11,486 --> 00:08:14,886
+So to recap primitives are are assigned by
+
+189
+00:08:14,910 --> 00:08:15,540
+value
+
+190
+00:08:15,840 --> 00:08:19,350
+and those are Numbers, Strings,
+Booleans, Null and Undefined.
+
+191
+00:08:19,935 --> 00:08:23,522
+Objects on the other hand get assigned
+by reference and those are
+
+192
+00:08:23,547 --> 00:08:26,953
+Objects, Arrays, Functions, Dates and Regex
+
+193
+00:08:27,104 --> 00:08:29,550
+So now what, what do I
+do with this information right
+
+194
+00:08:29,760 --> 00:08:33,600
+I'm going to show you some real world
+examples where this actually matters
+
+195
+00:08:33,900 --> 00:08:36,510
+so first one is comparison
+where we looked at it
+
+196
+00:08:36,780 --> 00:08:38,520
+but a lot of times
+we need to check
+
+197
+00:08:38,761 --> 00:08:42,720
+the values against each other
+a very common thing to do in
+
+198
+00:08:42,930 --> 00:08:45,030
+any programming language
+and pretty much any
+
+199
+00:08:45,360 --> 00:08:48,540
+Application so your
+app is a alarm clock
+
+200
+00:08:48,690 --> 00:08:53,940
+app and you want to check the time and
+see as soon as it hits seven A.M you want
+
+201
+00:08:53,940 --> 00:08:54,569
+to sound the alarm
+
+202
+00:08:54,701 --> 00:08:56,070
+it's very simple concept right
+
+203
+00:08:56,610 --> 00:08:59,070
+Seven is just a number you might have
+something like this
+
+204
+00:08:59,095 --> 00:09:01,410
+actually in javascript we check the current
+
+205
+00:09:01,740 --> 00:09:03,210
+Time of day
+
+206
+00:09:03,570 --> 00:09:05,610
+and as long as it matches seven
+
+207
+00:09:06,120 --> 00:09:10,440
+You can do a triple equals and and that's
+it, you're done this is basically all you
+
+208
+00:09:10,440 --> 00:09:14,250
+have to do when you compare those two
+numbers vs say this is something I had to
+
+209
+00:09:14,250 --> 00:09:15,250
+go through recently
+
+210
+00:09:15,360 --> 00:09:16,950
+so you have a profile page
+
+211
+00:09:17,100 --> 00:09:19,740
+and you want to
+enable and disable
+
+212
+00:09:20,160 --> 00:09:24,720
+The save button based on whether or not the
+user has updated the profile right so we
+
+213
+00:09:24,720 --> 00:09:26,190
+wanted to be disabled at first
+
+214
+00:09:26,460 --> 00:09:29,940
+but as soon as the user
+changes anything on their profile
+
+215
+00:09:30,270 --> 00:09:32,520
+You want to enable the
+button and then allow them to
+
+216
+00:09:32,670 --> 00:09:33,670
+to click on it
+
+217
+00:09:33,840 --> 00:09:39,273
+If you simply compare the original object
+if you compare that object with the object
+
+218
+00:09:39,273 --> 00:09:40,860
+that the form is giving you
+
+219
+00:09:41,040 --> 00:09:45,000
+they will always be different because
+even though they might look alike to you.
+
+220
+00:09:45,330 --> 00:09:48,300
+They are different
+objects in memory so
+
+221
+00:09:48,643 --> 00:09:50,141
+A comparison will always
+
+222
+00:09:50,903 --> 00:09:53,798
+well return false which means there
+are always going to be different objects
+
+223
+00:09:54,090 --> 00:09:57,450
+so you're enable or your save
+button is always going to be enable
+
+224
+00:09:57,600 --> 00:10:01,830
+another scenario that I can think
+of is when you pass a variable
+
+225
+00:10:02,280 --> 00:10:07,920
+to a function and you want that function to
+perform an operation on on that parameter
+
+226
+00:10:08,730 --> 00:10:10,090
+Actually I'm going
+to show you this
+
+227
+00:10:10,140 --> 00:10:11,140
+in the browser
+
+228
+00:10:11,670 --> 00:10:14,400
+Say I have a function
+that says function
+
+229
+00:10:15,302 --> 00:10:16,302
+Increment
+
+230
+00:10:18,062 --> 00:10:18,557
+Age
+
+231
+00:10:18,902 --> 00:10:20,131
+Right and I pass in it
+
+232
+00:10:20,611 --> 00:10:21,611
+An age to it
+
+233
+00:10:22,022 --> 00:10:24,122
+And I want the
+function to take the age
+
+234
+00:10:24,842 --> 00:10:25,892
+Equals age plus one
+
+235
+00:10:26,252 --> 00:10:28,052
+Right so an increment my age
+
+236
+00:10:28,832 --> 00:10:30,962
+If I simply say const
+
+237
+00:10:31,682 --> 00:10:33,542
+my age equals
+
+238
+00:10:34,142 --> 00:10:34,622
+Ten
+
+239
+00:10:35,132 --> 00:10:36,132
+Ten years old
+
+240
+00:10:36,662 --> 00:10:40,052
+And I'm going to call the function
+increment age and passing my age
+
+241
+00:10:40,412 --> 00:10:42,842
+What do we think is going
+to happen while we think
+
+242
+00:10:43,232 --> 00:10:44,402
+That it took the
+
+243
+00:10:45,212 --> 00:10:45,634
+Guess
+
+244
+00:10:45,829 --> 00:10:46,013
+just
+
+245
+00:10:46,352 --> 00:10:46,772
+So
+
+246
+00:10:47,222 --> 00:10:51,812
+This my age we are passing it into this
+function and we think that age is going to be
+
+247
+00:10:51,812 --> 00:10:52,532
+age plus one
+
+248
+00:10:52,832 --> 00:10:55,022
+So I think my age
+should now be eleven
+
+249
+00:10:56,462 --> 00:10:57,842
+But if I look at my age
+
+250
+00:10:59,072 --> 00:11:00,072
+It's still ten
+
+251
+00:11:00,782 --> 00:11:03,812
+Now why is that while the
+value of the age variable
+
+252
+00:11:03,992 --> 00:11:05,882
+is a number so it's a primitive
+
+253
+00:11:06,272 --> 00:11:10,172
+Now so when you pass it to a function
+you're actually passing the value of ten
+
+254
+00:11:11,136 --> 00:11:13,707
+Not the variable itself
+not the age itself
+
+255
+00:11:13,794 --> 00:11:14,365
+So
+
+256
+00:11:14,672 --> 00:11:17,252
+It gets copied by
+value not reference
+
+257
+00:11:17,762 --> 00:11:20,342
+Whereas if I have a function
+
+258
+00:11:21,062 --> 00:11:22,062
+That
+
+259
+00:11:22,172 --> 00:11:24,332
+takes instead of increment
+
+260
+00:11:25,082 --> 00:11:26,972
+Increment age same thing
+
+261
+00:11:27,212 --> 00:11:30,692
+but it actually takes an object so
+let's say we're passing the entire user
+
+262
+00:11:31,142 --> 00:11:32,702
+and the user object has a
+
+263
+00:11:33,122 --> 00:11:34,122
+Age
+
+264
+00:11:34,352 --> 00:11:35,352
+Property on it
+
+265
+00:11:35,432 --> 00:11:38,792
+user.age plus one I
+know I can do a shorthand but
+
+266
+00:11:39,662 --> 00:11:40,662
+We're simplifying
+
+267
+00:11:40,922 --> 00:11:44,642
+If I now have const me
+equals this object that has
+
+268
+00:11:44,762 --> 00:11:45,762
+age in it
+
+269
+00:11:46,142 --> 00:11:47,142
+Ten
+
+270
+00:11:47,822 --> 00:11:48,822
+Twelve ten
+
+271
+00:11:49,532 --> 00:11:51,902
+And let's say I do increment
+
+272
+00:11:52,802 --> 00:11:54,272
+Increment age
+
+273
+00:11:55,052 --> 00:11:56,072
+And I pass in
+
+274
+00:11:57,723 --> 00:11:58,273
+Not user
+
+275
+00:11:58,297 --> 00:11:58,691
+me
+
+276
+00:11:59,073 --> 00:11:59,372
+Right
+
+277
+00:12:00,055 --> 00:12:02,815
+What do we think is going to
+happen well i'm passing this
+
+278
+00:12:03,182 --> 00:12:07,112
+Object type not a primitive, a non
+primitive we're passing it to this object
+
+279
+00:12:07,507 --> 00:12:12,607
+Is going to get passed in as reference so
+the actual me object itself is going to go
+
+280
+00:12:12,632 --> 00:12:13,082
+in here
+
+281
+00:12:13,502 --> 00:12:15,452
+and the age of
+
+282
+00:12:15,572 --> 00:12:18,122
+that object which is the
+me object is going to be
+
+283
+00:12:18,422 --> 00:12:20,102
+manipulated so let's see.
+
+284
+00:12:20,492 --> 00:12:21,698
+How that works
+
+285
+00:12:21,722 --> 00:12:22,293
+me
+
+286
+00:12:22,652 --> 00:12:23,822
+Now age is eleven
+
+287
+00:12:23,973 --> 00:12:24,182
+right
+
+288
+00:12:24,362 --> 00:12:24,992
+so
+
+289
+00:12:25,262 --> 00:12:26,552
+again that's because
+
+290
+00:12:26,702 --> 00:12:29,882
+object are passed as reference
+so when I call increment
+
+291
+00:12:30,002 --> 00:12:31,982
+age and passing by object
+
+292
+00:12:32,192 --> 00:12:34,382
+actually passing the reference itself
+
+293
+00:12:34,406 --> 00:12:36,452
+which by the way may or
+may not be what you want
+
+294
+00:12:36,452 --> 00:12:38,222
+this is a really
+is important thing
+
+295
+00:12:38,582 --> 00:12:40,292
+and as a side note this might
+
+296
+00:12:40,502 --> 00:12:42,263
+seem like a good idea now because we're like
+
+297
+00:12:42,288 --> 00:12:44,858
+oh well we're manipulating the right object
+
+298
+00:12:44,882 --> 00:12:47,956
+in functional programming we call this
+as side effects right
+
+299
+00:12:47,981 --> 00:12:50,192
+this is most of you probably know this but
+
+300
+00:12:50,552 --> 00:12:54,872
+That means the function effects variables
+that are outside its own context meaning
+
+301
+00:12:54,872 --> 00:12:57,092
+this me object which
+does not belong
+
+302
+00:12:57,482 --> 00:12:58,892
+In the scope of this function
+
+303
+00:12:59,343 --> 00:13:03,272
+It gets affected by the by the function
+which is a big no-no in functional
+
+304
+00:13:03,272 --> 00:13:06,482
+programming with the concept of pure
+functions is that they don't change variable
+
+305
+00:13:06,482 --> 00:13:07,382
+it's outside
+
+306
+00:13:07,502 --> 00:13:09,717
+the scope of themselves
+they create a new variable
+
+307
+00:13:09,741 --> 00:13:12,512
+and return that new
+variable back to you
+
+308
+00:13:13,082 --> 00:13:14,082
+But that's a lesson
+
+309
+00:13:14,252 --> 00:13:14,518
+for another day
+
+310
+00:13:15,212 --> 00:13:16,212
+Water break
+
+311
+00:13:18,812 --> 00:13:19,812
+Lark.
+
+312
+00:13:21,032 --> 00:13:22,292
+So as you can see
+
+313
+00:13:22,622 --> 00:13:27,283
+There are real world consequences
+to understanding value vs reference
+
+314
+00:13:27,521 --> 00:13:30,422
+right and that could be
+the cause of a lot of your bugs
+
+315
+00:13:30,842 --> 00:13:33,722
+When you understand
+how values are set
+
+316
+00:13:33,842 --> 00:13:34,472
+and
+
+317
+00:13:34,712 --> 00:13:35,712
+passed around
+
+318
+00:13:35,972 --> 00:13:39,482
+You can catch those bugs a lot faster
+and avoid making mistakes again
+
+319
+00:13:39,902 --> 00:13:41,162
+So that was comparison
+
+320
+00:13:41,522 --> 00:13:43,922
+I also want to cover copying
+
+321
+00:13:44,025 --> 00:13:46,975
+so let's go back to the browser
+for one last time
+
+322
+00:13:47,000 --> 00:13:47,586
+To The Browser
+
+323
+00:13:48,606 --> 00:13:50,101
+So whenever when you
+
+324
+00:13:50,271 --> 00:13:51,643
+you assign a value
+
+325
+00:13:51,668 --> 00:13:53,191
+ const a equals
+
+326
+00:13:53,705 --> 00:13:54,705
+One
+
+327
+00:13:54,902 --> 00:13:57,512
+right some I'm going to
+do this and then instead of
+
+328
+00:13:59,313 --> 00:14:02,955
+assigning a number to b
+I'm going to assign b to a
+
+329
+00:14:03,362 --> 00:14:04,982
+Okay so now we're talking about
+
+330
+00:14:05,732 --> 00:14:07,562
+How the values get copied
+
+331
+00:14:07,982 --> 00:14:09,692
+So if I'm referencing a
+
+332
+00:14:11,133 --> 00:14:12,662
+And pointing b to a
+
+333
+00:14:13,082 --> 00:14:13,742
+Right
+
+334
+00:14:13,862 --> 00:14:14,639
+what is a
+
+335
+00:14:14,663 --> 00:14:16,538
+a is one and be is one
+
+336
+00:14:16,562 --> 00:14:16,802
+right
+
+337
+00:14:17,102 --> 00:14:18,182
+if I change a
+
+338
+00:14:18,302 --> 00:14:19,302
+it eight
+
+339
+00:14:20,192 --> 00:14:20,432
+Whoops
+
+340
+00:14:20,614 --> 00:14:22,022
+const a they don't
+
+341
+00:14:22,952 --> 00:14:23,952
+They can't change
+
+342
+00:14:24,002 --> 00:14:25,112
+let a
+
+343
+00:14:27,512 --> 00:14:28,512
+Browser
+
+344
+00:14:30,092 --> 00:14:31,092
+let a
+
+345
+00:14:31,472 --> 00:14:33,452
+and let b right a is one
+
+346
+00:14:33,632 --> 00:14:35,762
+be is one so if I
+
+347
+00:14:36,362 --> 00:14:37,412
+Set a to
+
+348
+00:14:37,952 --> 00:14:39,092
+The number seven
+
+349
+00:14:39,632 --> 00:14:41,392
+What do you think it's
+going to happen to b
+
+350
+00:14:41,671 --> 00:14:42,182
+Let's take a look
+
+351
+00:14:42,602 --> 00:14:43,772
+Be say there's one
+
+352
+00:14:44,012 --> 00:14:44,342
+right
+
+353
+00:14:44,702 --> 00:14:45,392
+but
+
+354
+00:14:45,542 --> 00:14:47,742
+because again we copied the value we didn't
+
+355
+00:14:47,767 --> 00:14:50,712
+b was not pointing to a
+b was pointing to one
+
+356
+00:14:51,302 --> 00:14:52,382
+So if I change a
+
+357
+00:14:52,502 --> 00:14:55,442
+b is not affected whereas if I
+
+358
+00:14:55,562 --> 00:14:56,882
+use an object
+
+359
+00:14:57,498 --> 00:15:01,053
+Instead and say a's name is
+
+360
+00:15:01,412 --> 00:15:02,412
+Sina
+
+361
+00:15:02,912 --> 00:15:04,112
+And now I'm going to
+
+362
+00:15:04,712 --> 00:15:06,212
+Point b to a right
+
+363
+00:15:06,924 --> 00:15:07,924
+What is a
+
+364
+00:15:08,238 --> 00:15:09,330
+a is Sina
+
+365
+00:15:09,679 --> 00:15:10,388
+b is Sina
+
+366
+00:15:10,412 --> 00:15:12,692
+now what if I change
+the name of a
+
+367
+00:15:13,232 --> 00:15:14,162
+To Qoli
+
+368
+00:15:15,212 --> 00:15:16,212
+Right
+
+369
+00:15:16,412 --> 00:15:17,612
+a is Qoli
+
+370
+00:15:17,912 --> 00:15:18,912
+what is b
+
+371
+00:15:20,072 --> 00:15:21,482
+b is also Qoli
+
+372
+00:15:21,812 --> 00:15:24,512
+Right so why is that
+again because it
+
+373
+00:15:24,811 --> 00:15:29,582
+it copies be is pointing to the reference
+of the object because it's not a primitive
+
+374
+00:15:30,212 --> 00:15:34,682
+So uh and even more interesting
+than that is when I assign
+
+375
+00:15:35,192 --> 00:15:37,202
+a to something
+totally different
+
+376
+00:15:40,322 --> 00:15:42,921
+name equals CRAIG
+
+377
+00:15:44,823 --> 00:15:45,781
+Right so what is a
+
+378
+00:15:45,805 --> 00:15:47,198
+ a is CRAIG
+
+379
+00:15:47,222 --> 00:15:49,682
+So would you say
+be is also Craig
+
+380
+00:15:50,702 --> 00:15:52,202
+No b stayed the same because
+
+381
+00:15:52,442 --> 00:15:56,042
+b was not pointing to a
+b was pointing to were
+
+382
+00:15:56,462 --> 00:15:57,462
+This
+
+383
+00:15:58,112 --> 00:15:58,562
+Qoli
+
+384
+00:15:58,862 --> 00:16:00,152
+Object was in memory
+
+385
+00:16:00,273 --> 00:16:02,073
+it has nothing to do
+with a, the fact that
+
+386
+00:16:02,462 --> 00:16:05,072
+a changed and
+that affected b was
+
+387
+00:16:05,312 --> 00:16:07,283
+indirectly it was affecting each other
+
+388
+00:16:07,308 --> 00:16:08,468
+they were affecting each other
+
+389
+00:16:08,492 --> 00:16:09,212
+and that means that
+
+390
+00:16:09,332 --> 00:16:11,222
+if either of them not just a
+
+391
+00:16:11,552 --> 00:16:16,292
+Would be updated the other one would also
+see the the change but this is an entirely
+
+392
+00:16:16,292 --> 00:16:17,292
+different assignment
+
+393
+00:16:17,492 --> 00:16:18,002
+so just
+
+394
+00:16:18,152 --> 00:16:21,782
+to takes a out of the game and a
+is not pointing to that original object
+
+395
+00:16:22,082 --> 00:16:22,532
+Anymore
+
+396
+00:16:22,832 --> 00:16:24,692
+Okay so hopefully
+that was clear
+
+397
+00:16:25,892 --> 00:16:29,552
+You have to go play with this stuff and and
+make sure you understand it for yourself
+
+398
+00:16:29,552 --> 00:16:31,073
+you can come back
+and watch this again
+
+399
+00:16:31,442 --> 00:16:33,752
+A second time it will make
+a lot more sense hopefully
+
+400
+00:16:34,172 --> 00:16:35,552
+I'll promise you you'll get it
+
+401
+00:16:35,672 --> 00:16:36,212
+things
+
+402
+00:16:36,392 --> 00:16:37,652
+like this come up a lot
+
+403
+00:16:37,772 --> 00:16:39,422
+in javascript interviews
+
+404
+00:16:39,542 --> 00:16:43,982
+so this is definitely a good one to know
+and with that my friends we have reached the
+
+405
+00:16:44,007 --> 00:16:44,612
+end of
+
+406
+00:16:44,732 --> 00:16:47,102
+the series but wait
+a minute what's next
+
+407
+00:16:47,222 --> 00:16:48,962
+is this all well i'm
+glad you asked
+
+408
+00:16:49,103 --> 00:16:49,532
+Qoli.
+
+409
+00:16:49,892 --> 00:16:52,592
+If you followed the series
+first of all i wanna say thank you
+
+410
+00:16:52,712 --> 00:16:54,422
+I hope you found it useful
+
+411
+00:16:54,722 --> 00:16:57,932
+but this is not where this
+javascript journey ends
+
+412
+00:16:58,352 --> 00:17:00,332
+Obviously there's
+a lot more to learn
+
+413
+00:17:00,452 --> 00:17:02,852
+in javascript than the
+ten things I taught you
+
+414
+00:17:03,333 --> 00:17:05,872
+and if you follow the
+the whole playlist
+
+415
+00:17:06,593 --> 00:17:07,006
+Awesome
+
+416
+00:17:07,150 --> 00:17:08,391
+So here's
+what I'm going to do next
+
+417
+00:17:08,416 --> 00:17:12,068
+I'm going to continue
+with ten more concepts
+
+418
+00:17:12,092 --> 00:17:13,592
+But I want them to come from you
+
+419
+00:17:13,802 --> 00:17:18,032
+I'm going to look for comments on any
+of the videos in the series the ten videos
+
+420
+00:17:18,302 --> 00:17:21,722
+leave a comment and
+tell me what specifically
+
+421
+00:17:21,851 --> 00:17:22,707
+about javascript
+
+422
+00:17:22,990 --> 00:17:24,062
+a Javascript concept
+
+423
+00:17:24,512 --> 00:17:27,062
+You want to learn that you've
+had a hard time understanding
+
+424
+00:17:27,422 --> 00:17:29,072
+It has to be a fundamental
+
+425
+00:17:29,192 --> 00:17:32,942
+can't be some framework or
+or something super niche that's
+
+426
+00:17:33,182 --> 00:17:34,182
+all I'm asking for
+
+427
+00:17:34,592 --> 00:17:37,712
+Right you can ask anything
+else as long as it's a fundamental
+
+428
+00:17:37,832 --> 00:17:39,632
+I will even mention
+you by name
+
+429
+00:17:40,079 --> 00:17:43,802
+and send you a beautiful color code sticker
+like this no matter where you live in the
+
+430
+00:17:43,802 --> 00:17:45,392
+world for free as long as I can
+
+431
+00:17:46,112 --> 00:17:47,112
+Ship to your country
+
+432
+00:17:47,552 --> 00:17:51,362
+All you gotta do is suggest what
+you want to see for episode eleven
+
+433
+00:17:52,022 --> 00:17:54,512
+And now for the
+big announcement
+
+434
+00:17:55,022 --> 00:17:57,362
+I have decided to create a full
+
+435
+00:17:57,572 --> 00:17:58,922
+javascript course
+
+436
+00:17:59,372 --> 00:18:00,452
+For anyone
+
+437
+00:18:00,632 --> 00:18:02,642
+who is looking
+to get their first
+
+438
+00:18:02,912 --> 00:18:04,022
+or next
+
+439
+00:18:04,142 --> 00:18:05,142
+javascript
+
+440
+00:18:05,252 --> 00:18:06,252
+programming job
+
+441
+00:18:06,512 --> 00:18:08,642
+I've spent years putting
+this thing together
+
+442
+00:18:08,762 --> 00:18:11,192
+and finally with
+the help of my team
+
+443
+00:18:11,322 --> 00:18:12,322
+is coming to life
+
+444
+00:18:12,932 --> 00:18:13,932
+It will include
+
+445
+00:18:14,042 --> 00:18:15,842
+JavaScript Fundamentals
+
+446
+00:18:16,292 --> 00:18:17,545
+Using the why method
+
+447
+00:18:17,570 --> 00:18:20,846
+something I call the why method
+i've used this a lot in this series
+
+448
+00:18:21,444 --> 00:18:22,892
+so if you like the way I'm teaching
+
+449
+00:18:23,252 --> 00:18:24,482
+These ten videos
+
+450
+00:18:24,752 --> 00:18:26,793
+that's the way it's going
+to be for the full course
+
+451
+00:18:27,032 --> 00:18:29,402
+Interview preparation
+I get this asked a lot
+
+452
+00:18:29,761 --> 00:18:33,092
+common mistakes that
+people make during interviews
+
+453
+00:18:33,212 --> 00:18:36,872
+and you can easily avoid them so there's
+going to be an Interview Prep section
+
+454
+00:18:37,292 --> 00:18:38,292
+In the course
+
+455
+00:18:38,436 --> 00:18:42,482
+Mastery mindset this is something that very
+few people talk about something that you
+
+456
+00:18:42,482 --> 00:18:43,172
+can learn
+
+457
+00:18:43,292 --> 00:18:44,292
+and use it
+
+458
+00:18:44,612 --> 00:18:45,722
+to go and learn
+
+459
+00:18:45,932 --> 00:18:46,876
+any other language
+
+460
+00:18:46,901 --> 00:18:49,058
+doesn't have to stop with javascript
+
+461
+00:18:49,082 --> 00:18:50,492
+again using the why the method
+
+462
+00:18:50,762 --> 00:18:55,862
+and one of my favorite parts of this is
+what I call expert conversations where I
+
+463
+00:18:56,042 --> 00:18:56,582
+have picked
+
+464
+00:18:56,942 --> 00:18:58,802
+Some of my friends
+are some of the more
+
+465
+00:18:58,982 --> 00:19:03,331
+I guess famous youtubers and
+teachers from from Twitter YouTube or
+
+466
+00:19:03,932 --> 00:19:05,162
+Frontend masters and
+
+467
+00:19:05,702 --> 00:19:08,979
+And Udemy and few other
+places i've decided to talk to them
+
+468
+00:19:09,004 --> 00:19:10,722
+and record those conversations
+
+469
+00:19:10,862 --> 00:19:12,962
+Hours of expert advice on
+
+470
+00:19:13,232 --> 00:19:16,802
+how to nail the language
+of javascript specifically
+
+471
+00:19:17,222 --> 00:19:19,982
+No matter what your goal
+is whether you want to get
+
+472
+00:19:20,132 --> 00:19:21,392
+a job or you want to get a
+
+473
+00:19:21,512 --> 00:19:23,252
+better job you want
+to make more money
+
+474
+00:19:23,582 --> 00:19:24,582
+You want to
+
+475
+00:19:24,932 --> 00:19:27,478
+Just simply become the expert in javascript
+
+476
+00:19:27,503 --> 00:19:29,072
+still the world's most
+
+477
+00:19:29,402 --> 00:19:32,612
+Popular programming language
+not a bad thing to nail right
+
+478
+00:19:33,452 --> 00:19:36,752
+So if you want to know when the course is
+released I will be announcing it on this
+
+479
+00:19:36,752 --> 00:19:38,012
+channel so make sure you
+
+480
+00:19:38,492 --> 00:19:41,312
+Subscribe or go to colorcode.io
+
+481
+00:19:41,432 --> 00:19:44,252
+and sign up for early
+access there's a form there
+
+482
+00:19:44,612 --> 00:19:45,422
+I do not
+
+483
+00:19:45,632 --> 00:19:46,862
+send you marketing
+
+484
+00:19:46,982 --> 00:19:48,542
+emails or any bullsh*t like that
+
+485
+00:19:48,872 --> 00:19:49,538
+It's simply
+
+486
+00:19:49,832 --> 00:19:53,522
+a way for me to let you know
+when the course is available
+
+487
+00:19:54,005 --> 00:19:57,362
+JavaScrip Mastery and with that again
+I want to say thank you for watching the
+
+488
+00:19:57,362 --> 00:19:59,432
+series it's been a lot
+of fun for me to seeing
+
+489
+00:19:59,612 --> 00:20:02,252
+your reactions and it's
+just been such a positive
+
+490
+00:20:02,642 --> 00:20:03,902
+Experience on YouTube
+
+491
+00:20:04,202 --> 00:20:06,182
+YouTube is notorious for having
+
+492
+00:20:06,662 --> 00:20:10,232
+Really nasty comments and people
+fighting I haven't seen any of that
+
+493
+00:20:10,356 --> 00:20:13,022
+in the series so that's
+been truly amazing
+
+494
+00:20:13,472 --> 00:20:14,072
+to see
+
+495
+00:20:14,342 --> 00:20:17,522
+and this is been ten things
+javascript developers should know
+
+496
+00:20:17,882 --> 00:20:19,232
+but probably don't
+
+497
+00:20:19,472 --> 00:20:22,922
+I'm looking forward to hearing what
+you want to see for episode eleven
+
+498
+00:20:23,402 --> 00:20:27,032
+Now go write some code and I'm looking
+forward to sharing my full course with you
+
+499
+00:20:27,152 --> 00:20:28,152
+very soon
+
+500
+00:20:28,771 --> 00:20:29,326
+Salute.
+
